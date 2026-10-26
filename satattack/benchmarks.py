@@ -1,11 +1,12 @@
-import circuit
+from pathlib import Path
+from . import circuit
 from src.utils import extract_io_v,extract_gates_v,extract_io_b,extract_gates_b,format_verilog
-from node import Node,DFF
+from .node import Node,DFF
 
 
 
 def read_nodes_v(filename):
-  verilog=open(filename).read()
+  verilog=Path(filename).read_text()
   verilog=format_verilog(verilog)
   inp,_=extract_io_v(verilog,'input')
   out,_=extract_io_v(verilog,'output')
@@ -50,7 +51,7 @@ def read_nodes_v(filename):
 
 
 def read_nodes_b(filename):
-  netlist=open(filename).read()  
+  netlist=Path(filename).read_text()
   inp= extract_io_b(netlist,mode='input')
   out=extract_io_b(netlist,mode='output')
   gates,_=extract_gates_b(netlist)

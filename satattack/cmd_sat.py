@@ -1,11 +1,11 @@
 import argparse
 import time
 import z3
-import benchmarks
-import circuit
-import dip_finder
-import sat_model
-import oracle_runner
+from . import benchmarks
+from . import circuit
+from . import dip_finder
+from . import sat_model
+from . import oracle_runner
 import re
 
 class SatAttack:
@@ -118,7 +118,7 @@ class SatAttack:
 
     def _key_string(self, key):
         def x(name):
-            tmp=re.findall("[\d]+",name)
+            tmp=re.findall("[\\d]+",name)
             # print("TMP",tmp)
             if (tmp!=[]):
                 return int(tmp[0])

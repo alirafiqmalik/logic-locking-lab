@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "logic-locking-lab"
+version = "0.1.0"
+description = "Research toolkit for logic locking and oracle-guided SAT attacks"
+requires-python = ">=3.10"
+dependencies = ["networkx>=3,<4", "z3-solver>=4.12,<5"]
+
+[project.scripts]
+logic-locking-attack = "satattack.run:main"
+
+[tool.setuptools]
+packages = ["src", "satattack"]
+py-modules = ["NPS"]

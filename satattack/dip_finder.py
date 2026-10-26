@@ -1,8 +1,7 @@
 from z3 import *
 
-from circuit import Circuit
-import sat_model
-
+from .circuit import Circuit
+from . import sat_model
 class DipFinder:
     def __init__(self, nodes, output_names):
         self.nodes = nodes

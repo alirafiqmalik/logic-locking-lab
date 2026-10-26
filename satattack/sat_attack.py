@@ -1,11 +1,11 @@
 import re
 import z3
 
-import benchmarks
-import circuit
-import dip_finder
-import sat_model
-import oracle_runner
+from . import benchmarks
+from . import circuit
+from . import dip_finder
+from . import sat_model
+from . import oracle_runner
 import re
 
 class SatAttack:
@@ -59,7 +59,6 @@ class SatAttack:
         print("Found key:    %s" % (self._key_string(key)))
 
         print("\nChecking for circuit equivalence...\n")
-        self._check_key(key)
         if self._check_key(key):
             print("Locked and unlocked circuits match")
         else:
@@ -114,7 +113,7 @@ class SatAttack:
 
     def _key_string(self, key):
         def x(name):
-            tmp=re.findall("[\d]+",name)
+            tmp=re.findall("[\\d]+",name)
             # print("TMP",tmp)
             if (tmp!=[]):
                 return int(tmp[0])
@@ -123,7 +122,7 @@ class SatAttack:
                 return 0
         ordered_names = sorted(key.keys(), key=x,reverse=True)
         # print(key.keys())
-        print("HERE ",ordered_names)
+        # Display circuit bits in descending numeric input order.
         
         key_string = ""
 

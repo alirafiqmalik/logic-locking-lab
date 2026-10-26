@@ -1,0 +1,18 @@
+digraph circuit {
+graph [rankdir=LR, bgcolor="#0f172a", pad="0.5", nodesep="0.65", ranksep="0.85",
+label="LOGIC LOCKING LAB\nAND circuit with XOR locking", labelloc=t,
+fontname="DejaVu Sans", fontsize=24, fontcolor="#f8fafc"];
+node [shape=box, style="rounded,filled", fontname="DejaVu Sans",
+fontsize=16, color="#475569", fillcolor="#1e293b", fontcolor="#f8fafc", margin="0.22,0.15"];
+edge [color="#94a3b8", arrowsize=0.8];
+"keyinput0" [label="keyinput0", fillcolor="#115e59"];
+"b" [label="b", fillcolor="#1e293b"];
+"a" [label="a", fillcolor="#1e293b"];
+"n" [label="AND → n", fillcolor="#1e293b"];
+"a" -> "n";
+"b" -> "n";
+"y" [label="XOR → y", fillcolor="#1e293b"];
+"n" -> "y";
+"keyinput0" -> "y";
+"y" [color="#2dd4bf", penwidth=2];
+}

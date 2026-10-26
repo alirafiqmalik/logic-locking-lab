@@ -1,4 +1,4 @@
-from circuit_solver import solve_ckt
+from .circuit_solver import solve_ckt
 
 class OracleRunner:
     def __init__(self, ckt):

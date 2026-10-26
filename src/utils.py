@@ -113,10 +113,10 @@ def io_port(inputs, mode="input"):
 
 
 def sortio(tmp, reverse=True):
-    tmpl = list(set([re.sub("\[[0-9]+\]", "", i) for i in tmp]))
+    tmpl = list(set([re.sub("\\[[0-9]+\\]", "", i) for i in tmp]))
     tmpl.sort(reverse=False)
     def x(inp): return (tmpl.index(
-        re.sub("(\[[0-9]+\])", "", inp)), re.sub(".*\[?([0-9]+)\]?.*", r"\1", inp))
+        re.sub("(\\[[0-9]+\\])", "", inp)), re.sub(".*\\[?([0-9]+)\\]?.*", r"\1", inp))
     tmp.sort(key=x, reverse=reverse)
 
 ####################################################################################################################################
@@ -214,7 +214,7 @@ def format_verilog(netlist,remove_wire=False):
     netlist=re.sub("wire .*;\n","",netlist)
 
   netlist=re.sub("\n+","",netlist)
-  netlist=re.sub("\s+"," ",netlist)
+  netlist=re.sub("\\s+"," ",netlist)
   netlist=re.sub(" ?; ?",";\n",netlist)
   netlist=re.sub("endmodule","endmodule\n",netlist)
   netlist=re.sub("end ","end\n",netlist)
@@ -233,8 +233,8 @@ def format_bench(netlist):
   netlist=re.sub("#.*\n","\n",netlist)
   netlist=re.sub("="," = ",netlist)
   netlist=re.sub("\n+","",netlist)
-  netlist=re.sub("\s+"," ",netlist)
-  netlist=re.sub("\)",")\n",netlist)
+  netlist=re.sub("\\s+"," ",netlist)
+  netlist=re.sub("\\)",")\n",netlist)
 
   return netlist
 
@@ -243,7 +243,7 @@ def format_bench(netlist):
 ####################################################################################################################################
 
 def extract_io_b(bench,mode="input"):
-    tmp=re.findall(mode.upper()+"\((.*)\)",bench)
+    tmp=re.findall(mode.upper()+"\\((.*)\\)",bench)
     sortio(tmp)
     return tmp
 
@@ -259,11 +259,11 @@ def extract_gates_b(bench):
             ix=i
 
         if i=='NOT' or i=='BUF' or i=='DFF':
-            tmp[i]=re.findall(" ?(.*) = "+ ix +"\((.*)\)\n?",bench)
+            tmp[i]=re.findall(" ?(.*) = "+ ix +"\\((.*)\\)\n?",bench)
 
             i.lower()
         else:
-            tmp[i]=re.findall(" ?(.*) = "+ ix +"\((.*), ?(.*)\)\n?",bench)
+            tmp[i]=re.findall(" ?(.*) = "+ ix +"\\((.*), ?(.*)\\)\n?",bench)
         
         gcount = len(tmp[i])
         if (gcount == 0):
@@ -287,7 +287,7 @@ def dict_to_bin(output,printo=False,reverse=True):
         if(val==None):
             return -1
         bin+="1" if val else "0"
-    return bin	
+    return bin
 
 ####################################################################################################################################
 ####################################################################################################################################

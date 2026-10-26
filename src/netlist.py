@@ -5,8 +5,8 @@ import re
 class Netlist():
   def __init__(self,netlist:str)->None:#mode:str="graph"
     self.netlist=netlist
-    self.inputs=re.findall("INPUT\((.*)\)\n",netlist)
-    self.outputs=re.findall("OUTPUT\((.*)\)\n",netlist)
+    self.inputs=re.findall("INPUT\\((.*)\\)\n",netlist)
+    self.outputs=re.findall("OUTPUT\\((.*)\\)\n",netlist)
     
     self.wires=[]
 
@@ -26,7 +26,7 @@ class Netlist():
     self.circuitgraph = nx.DiGraph()
     for i in self.gates.keys():
       if i=='NOT' or i=='BUF':
-        tmp=re.findall("(.*) = "+ i +"\((.*)\)\n?",netlist)
+        tmp=re.findall("(.*) = "+ i +"\\((.*)\\)\n?",netlist)
         for count,j in enumerate(tmp):
           #print(j)
           self.circuitgraph.add_edge(i+"_"+str(count),j[0].strip())
@@ -37,7 +37,7 @@ class Netlist():
               self.wires.append(tmpk)
               #print(k)
       else:
-        tmp=re.findall("(.*) = "+ i +"\((.*),(.*)\)\n?",netlist)
+        tmp=re.findall("(.*) = "+ i +"\\((.*),(.*)\\)\n?",netlist)
         for count,j in enumerate(tmp):
           #print(j)
           self.circuitgraph.add_edge(i+"_"+str(count),j[0].strip())

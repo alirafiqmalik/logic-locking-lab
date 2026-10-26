@@ -1,0 +1,6 @@
+INPUT(a)
+INPUT(b)
+INPUT(keyinput0)
+OUTPUT(y)
+n = AND(a,b)
+y = XOR(n,keyinput0)

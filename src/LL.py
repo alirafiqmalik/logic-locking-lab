@@ -229,7 +229,7 @@ class PostSAT_LL:
 
     tmporgport=tmporgport[:-1]
 
-    self.netlist=re.sub("module .* ?\((.*)\);",r"module org (\1);",self.netlist)
+    self.netlist=re.sub("module .* ?\\((.*)\\);",r"module org (\1);",self.netlist)
 
     top="module top({topbus});\n{topio}\n{CRwire}\n{orgmodule}\n{CRmodule}\n{Xornet}\nendmodule"
     top=top.format(topbus=iportnodes+","+oportnodes+","+keyport,topio="input {};\n{}\n{}".format(keyport,inputnodes,outputnodes),CRwire="",orgmodule="org o1({});".format(tmporgport),CRmodule=pc.format(init="to",Q="FSO")+"\n"+rc.format(init="ro",key="{%s}"%keyport,Q="FRO"),Xornet=tmpx)

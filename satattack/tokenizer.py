@@ -1,5 +1,5 @@
 from enum import Enum
-from token_type import TokenType
+from .token_type import TokenType
 
 class State(Enum):
     START = 0

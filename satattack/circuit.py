@@ -1,4 +1,4 @@
-from circuit_builder import CircuitBuilder
+from .circuit_builder import CircuitBuilder
 
 class Circuit:
     @classmethod
